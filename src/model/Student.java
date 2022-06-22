@@ -8,7 +8,7 @@ public class Student implements Comparator<Student> {
     private int age;
     private String gender;
     private String address;
-    private double diemTrungBinh;
+    private double pointAverage;
 
     public Student() {
     }
@@ -20,16 +20,16 @@ public class Student implements Comparator<Student> {
         age = Integer.parseInt(fields [2]);
         gender = fields[3];
         address = fields[4];
-        diemTrungBinh = Double.parseDouble(fields[5]);
+        pointAverage = Double.parseDouble(fields[5]);
     }
 
-    public Student(long studentID, String name, int age, String gender, String address, double diemTrungBinh) {
+    public Student(long studentID, String name, int age, String gender, String address, double pointAverage) {
         this.studentID = studentID;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.address = address;
-        this.diemTrungBinh = diemTrungBinh;
+        this.pointAverage = pointAverage;
     }
 
     public long getStudentID() {
@@ -72,12 +72,12 @@ public class Student implements Comparator<Student> {
         this.address = address;
     }
 
-    public double getDiemTrungBinh() {
-        return diemTrungBinh;
+    public double getPointAverage() {
+        return pointAverage;
     }
 
-    public void setDiemTrungBinh(double diemTrungBinh) {
-        this.diemTrungBinh = diemTrungBinh;
+    public void setPointAverage(double pointAverage) {
+        this.pointAverage = pointAverage;
     }
 
     @Override
@@ -87,7 +87,7 @@ public class Student implements Comparator<Student> {
                 "," + age +
                 "," + gender +
                 "," + address +
-                "," + diemTrungBinh;
+                "," + pointAverage;
     }
 
     @Override

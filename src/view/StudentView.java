@@ -18,63 +18,59 @@ public class StudentView {
         id = (int) (System.currentTimeMillis()/1000);
         System.out.println("Nhập họ tên sinh viên: (vd:Tran Hong Phong) ");
         System.out.print("➨ ");
-        String ten = scanner.nextLine();
-        String namecheck;
-        namecheck = ConvertUtils.removeAccent(ten);
-        while (!ValidationUtils.isNameValid(namecheck)) {
-            System.out.println("Tên " + namecheck + " không đúng." + " Vui lòng nhập lại!" + " (Tên phải viết hoa chữ cái đầu)");
+        String name = scanner.nextLine();
+        String nameCheck;
+        nameCheck = ConvertUtils.removeAccent(name);
+        while (!ValidationUtils.isNameValid(nameCheck)) {
+            System.out.println("Tên " + nameCheck + " không đúng." + " Vui lòng nhập lại!" + " (Tên phải viết hoa chữ cái đầu)");
             System.out.println("Nhập tên: (Ví dụ: Tran Hong Phong) ");
             System.out.print(" ➨ ");
-            ten = scanner.nextLine();
+            name = scanner.nextLine();
         }
 
         System.out.println("Nhập tuổi của sinh viên: ");
-        int tuoi;
+        int age;
         do {
-            tuoi = Integer.parseInt(scanner.nextLine());
-            if (!(tuoi >= 0)) {
+            age = Integer.parseInt(scanner.nextLine());
+            if (!(age >= 0 && age <=100)) {
                 System.out.println("! ERROR ! \n" +
                         " \t Xin vui lòng nhập lại! \n ➨ \t ");
                 System.out.print("➨ \t ");
             }
-        } while (!(tuoi >= 0));
-        System.out.printf("➨ \t ");
-
-
+        } while (!(age >= 0 && age <=100));
         System.out.println("Nhập giới tính của sinh viên");
         System.out.print("➨ ");
-        String gioiTinh = scanner.nextLine();
-        while (!ValidationUtils.isGioitinh(gioiTinh)) {
-            System.out.println("Giới tính " + gioiTinh + " không đúng." + " Vui lòng nhập lại!" + " (Tên phải viết hoa chữ cái đầu và có dấu)");
-            System.out.println("Nhập giới tính (ví dụ: Nam hoặc Nữ");
+        String gender = scanner.nextLine();
+        while (!ValidationUtils.isGioitinh(gender)) {
+            System.out.println("Giới tính " + gender + " không đúng." + " Vui lòng nhập lại!" + " (Tên phải viết hoa chữ cái đầu)");
+            System.out.println("Nhập giới tính (ví dụ: Nam/Nữ (nam/nữ))");
             System.out.print("➨ ");
-            gioiTinh = scanner.nextLine();
+            gender = scanner.nextLine();
         }
-
 
         System.out.print("Nhập địa chỉ: \n ➨ \t");
-        String diaChi = scanner.nextLine();
-        while (!ValidationUtils.isAddressValid(diaChi)) {
-            System.out.println("Địa chỉ " + diaChi + " chưa hợp lệ. Mời nhập lại (Địa chỉ bắt đầu bằng số) \n " +
-                    "\t (vd: 30, Dong Da, Hue)");
-            diaChi = scanner.nextLine();
+        String address = scanner.nextLine();
+        while (!ValidationUtils.isAddressValid(address)) {
+            System.out.println("Địa chỉ " + address + " chưa hợp lệ. Mời nhập lại (Địa chỉ bắt đầu bằng số) \n " +
+                    "\t (vd: 28 Nguyen Tri Phuong)");
+            address = scanner.nextLine();
         }
 
-        System.out.print("Nhập điểm trung bình ");
-        double diemTrungBinh;
+        System.out.print("Nhập điểm trung bình\n");
+        System.out.print("➨ ");
+        double pointAverage;
         do {
-            diemTrungBinh = Double.parseDouble(scanner.nextLine());
-            if (!(diemTrungBinh > 0)) {
+            pointAverage = Double.parseDouble(scanner.nextLine());
+            if (!(pointAverage > 0 && pointAverage <=10)) {
                 System.out.print("Nhập sai. Xin vui lòng nhập lại!");
-                diemTrungBinh = Double.parseDouble(scanner.nextLine());
+                pointAverage = Double.parseDouble(scanner.nextLine());
             }
-        } while (!(diemTrungBinh > 0));
+        } while (!(pointAverage > 0 && pointAverage <=10));
 
-        Student student = new Student(id, ten, tuoi, gioiTinh, diaChi, diemTrungBinh);
+        Student student = new Student(id, name, age, gender, address, pointAverage);
         studentService.addItem(student);
         System.out.println("Đã thêm sinh viên thành công!");
         show(studentService.getItem());
-
 
         boolean flag = true;
         do {
@@ -98,11 +94,9 @@ public class StudentView {
         } while (!flag);
     }
 
-
     public static void update() {
         show(studentService.getItem());
         System.out.print("Nhập ID cần sửa\n➨ \t ");
-//        show(productService.getItem());
         try {
             int id = Integer.parseInt(scanner.nextLine());
             if (studentService.exists(id)) {
@@ -140,9 +134,9 @@ public class StudentView {
                 } while (!is);
                 boolean flag = true;
                 do {
-                    System.out.print("Nhấn 'c' để tiếp tục cập nhật \nNhấn 'b' để quay lại \nNhấn 'e' để thoát... \n=> \t");
-                    String chon = scanner.nextLine();
-                    switch (chon) {
+                    System.out.print("Nhấn 'c' để tiếp tục cập nhật || Nhấn 'b' để quay lại || Nhấn 'e' để thoát \n=> \t");
+                    String number = scanner.nextLine();
+                    switch (number) {
                         case "c":
                             update();
                             break;
@@ -161,10 +155,8 @@ public class StudentView {
                 System.out.println("Mời Nhập Lại");
                 update();
             }
-
         } catch (Exception ex) {
             ex.printStackTrace();
-
         }
     }
 
@@ -174,22 +166,32 @@ public class StudentView {
         System.out.printf("%-20s %-30s %-10s %-10s %-20s %-15s", "Mã sinh viên", "Họ tên", "Tuổi", "Giới tính", "Địa chỉ", "Điểm TB");
         System.out.println(" ");
         for (Student student : studentList) {
-            System.out.printf("%-20s %-30s %-10s %-10s %-20s %-15s\n", student.getStudentID(), student.getName(), student.getAge(), student.getGender(), student.getAddress(), student.getDiemTrungBinh());
+            System.out.printf("%-20s %-30s %-10s %-10s %-20s %-15s\n",
+                    student.getStudentID(),
+                    student.getName(),
+                    student.getAge(),
+                    student.getGender(),
+                    student.getAddress(),
+                    student.getPointAverage());
         }
         System.out.println("-----------------------------------------------------------------------------------------------------\n");
     }
     public static void showAll() {
         List<Student> studentList = studentService.getItem();
-        System.out.println("menu");
-
             System.out.println("---------------------------------- DANH SÁCH SINH VIÊN ------------------------------------------------------");
             System.out.printf("%-20s %-30s %-10s %-10s %-20s %-15s\n", "Mã sinh viên", "Họ tên", "Tuổi", "Giới tính", "Địa chỉ", "Điểm TB");
             for (Student student : studentList) {
-                System.out.printf("%-20s %-30s %-10s %-10s %-20s %-15s\n", student.getStudentID(), student.getName(), student.getAge(), student.getGender(), student.getAddress(), student.getDiemTrungBinh());
+                System.out.printf("%-20s %-30s %-10s %-10s %-20s %-15s\n",
+                        student.getStudentID(),
+                        student.getName(),
+                        student.getAge(),
+                        student.getGender(),
+                        student.getAddress(),
+                        student.getPointAverage());
             }
             System.out.println("----------------------------------------------------------------------------------------------------------");
             do {
-                System.out.print("Nhấn 'b' để quay lại || Nhấn 'e' để thoát chương trình");
+                System.out.print("Nhấn 'b' để quay lại || Nhấn 'e' để thoát chương trình\n");
                 String choice = scanner.nextLine();
                 switch (choice) {
                     case "b":
@@ -200,35 +202,34 @@ public class StudentView {
                         break;
                     default:
                         System.out.println("Chưa hợp lệ, mời nhập lại");
-
                 }
             } while (true);
     }
 
-    public void showStudent() {
-        show(studentService.getItem());
-
-        do {
-            System.out.println("Nhấn 'c' để trở lại     ||  Nhấn 'e' để thoát chương trình");
-            System.out.printf(" ➨ \t");
-            String choice = scanner.nextLine();
-            try {
-                switch (choice) {
-                    case "c":
-                        Menu.mainMenu();
-                        break;
-                    case "e":
-                        System.exit(0);
-                        break;
-                    default:
-                        System.out.println("Vui lòng nhập lại!");
-
-                }
-            } catch (Exception e) {
-                System.out.println("Chưa hợp lệ! Xin vui lòng nhập lại!");
-            }
-        } while (true);
-    }
+//    public void showStudent() {
+//        show(studentService.getItem());
+//
+//        do {
+//            System.out.println("Nhấn 'c' để trở lại     ||  Nhấn 'e' để thoát chương trình\n");
+//            System.out.printf(" ➨ \t");
+//            String choice = scanner.nextLine();
+//            try {
+//                switch (choice) {
+//                    case "c":
+//                        Menu.mainMenu();
+//                        break;
+//                    case "e":
+//                        System.exit(0);
+//                        break;
+//                    default:
+//                        System.out.println("Vui lòng nhập lại!");
+//
+//                }
+//            } catch (Exception e) {
+//                System.out.println("Chưa hợp lệ! Xin vui lòng nhập lại!");
+//            }
+//        } while (true);
+//    }
 
     public static void inputTen(int id) {
         Student student = studentService.getStudentByID(id);
@@ -274,12 +275,11 @@ public class StudentView {
         Student student = studentService.getStudentByID(id);
         System.out.printf("Cập nhật điểm trung bình của sinh viên: \n➨ \t");
         double diemTrungBinh = Double.parseDouble(scanner.nextLine().trim());
-        student.setDiemTrungBinh(diemTrungBinh);
+        student.setPointAverage(diemTrungBinh);
         studentService.update(student);
         show(studentService.getItem());
         System.out.println("Cập nhật thành công!");
     }
-
 
     public static void remove() {
         List<Student> studentList = studentService.getItem();
@@ -288,7 +288,6 @@ public class StudentView {
         int id = Integer.parseInt(scanner.nextLine());
         Student student = studentService.getStudentByID(id);
         if (student != null) {
-            boolean check = true;
             Menu.removeConfirm();
             String number = scanner.nextLine();
             try {
@@ -298,7 +297,7 @@ public class StudentView {
                         System.out.println("Xóa thành công sinh viên ra khỏi danh sách!");
                         show(studentService.getItem());
                         do {
-                            System.out.println("Nhấn '1' để quay lại ||  Nhấn '2' để thoát");
+                            System.out.println("Nhấn '1' để quay lại ||  Nhấn '2' để thoát\n");
                             System.out.printf("➨ \t");
                             byte choice = Byte.parseByte(scanner.nextLine());
                             switch (choice) {
@@ -309,11 +308,10 @@ public class StudentView {
                                    System.exit(2);
                                     break;
                                 default:
-                                    System.out.println("\t Nhập lại!!! ");
-                                    check = false;
+                                    System.out.println("Nhập lại!");
+
                             }
-                        } while (!check);
-                        break;
+                        } while (true);
                     case "c":
                         Menu.mainMenu();
                         break;

@@ -1,22 +1,19 @@
 package view;
 
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import static view.MenuSort.studentList;
 
 public class Menu {
 
     static Scanner scanner = new Scanner(System.in);
 
-    public Menu() {
-        startMenu();
-    }
+//    public Menu() {
+//        startMenu();
+//    }
 
     public static void startMenu() {
         try {
-            int choice = 0;
+            int choice;
             do {
                 mainMenu();
                 choice = Integer.parseInt(scanner.nextLine());
@@ -41,7 +38,6 @@ public class Menu {
                         System.exit(0);
                     default:
                         System.out.println("Không hợp lệ. Vui lòng nhập lại");
-
                 }
             } while (true);
         } catch (InputMismatchException io) {
@@ -52,7 +48,6 @@ public class Menu {
     }
 
     public static void mainMenu() {
-
         System.out.println("===============================================");
         System.out.println("=               Quản lý sinh viên             =");
         System.out.println("===============================================");
@@ -67,9 +62,8 @@ public class Menu {
         System.out.printf("➨ \t");
     }
 
-
     public static void inputUpdate() {
-        System.out.println("------------------------------------------");
+        System.out.println("-------------   Cập nhật   ---------------");
         System.out.println("-    1. Cập nhật họ tên sinh viên        -");
         System.out.println("-    2. Cập nhật tuổi của sinh viên      -");
         System.out.println("-    3. Cập nhật giới tính sinh viên     -");
@@ -82,7 +76,7 @@ public class Menu {
     }
 
     public static void removeConfirm() {
-        System.out.println("1. Nhấn y để xác nhận xóa || 2. Nhấn c để quay lạ");
+        System.out.println("1. Nhấn y để xác nhận xóa || 2. Nhấn c để quay lại\n");
         System.out.printf("➨ \t");
     }
 }

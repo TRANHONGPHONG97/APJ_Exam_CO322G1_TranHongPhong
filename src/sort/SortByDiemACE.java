@@ -6,12 +6,8 @@ import java.util.Comparator;
 
 public class SortByDiemACE implements Comparator<Student> {
     public int compare(Student o1, Student o2) {
-        if(o1.getDiemTrungBinh() > o2.getDiemTrungBinh()){
-            return 1;
-        }else if(o1.getDiemTrungBinh() == o2.getDiemTrungBinh()){
-            return 0;
-        }else{
-            return -1;
-        }
+        double result = o1.getPointAverage() - o2.getPointAverage();
+        return result == 0 ? 0 : (result > 0 ? 1 : -1);
     }
 }
+

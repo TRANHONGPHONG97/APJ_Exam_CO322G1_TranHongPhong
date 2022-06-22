@@ -36,7 +36,7 @@ public class StudentService implements IStudentService {
                 student.setAge(newStudent.getAge());
                 student.setGender(newStudent.getGender());
                 student.setAddress(newStudent.getAddress());
-                student.setDiemTrungBinh(newStudent.getDiemTrungBinh());
+                student.setPointAverage(newStudent.getPointAverage());
             }
         }
         CSVUtils.write(path, students);
