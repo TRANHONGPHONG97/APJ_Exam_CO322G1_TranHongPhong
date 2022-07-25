@@ -7,10 +7,6 @@ public class Menu {
 
     static Scanner scanner = new Scanner(System.in);
 
-//    public Menu() {
-//        startMenu();
-//    }
-
     public static void startMenu() {
         try {
             int choice;
@@ -51,12 +47,12 @@ public class Menu {
         System.out.println("===============================================");
         System.out.println("=               Quản lý sinh viên             =");
         System.out.println("===============================================");
-        System.out.println("=  1. Xem danh sách                           =");
-        System.out.println("=  2. Thêm mới                                =");
-        System.out.println("=  3. Cập nhật                                =");
-        System.out.println("=  4. Xóa                                     =");
-        System.out.println("=  5. Sắp Xếp                                 =");
-        System.out.println("=  0. Thoát                                   =");
+        System.out.println("=           1. Xem danh sách                  =");
+        System.out.println("=           2. Thêm mới                       =");
+        System.out.println("=           3. Cập nhật                       =");
+        System.out.println("=           4. Xóa                            =");
+        System.out.println("=           5. Sắp Xếp                        =");
+        System.out.println("=           0. Thoát                          =");
         System.out.println("===============================================");
         System.out.println("Chọn chức năng");
         System.out.printf("➨ \t");

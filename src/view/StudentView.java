@@ -206,36 +206,11 @@ public class StudentView {
             } while (true);
     }
 
-//    public void showStudent() {
-//        show(studentService.getItem());
-//
-//        do {
-//            System.out.println("Nhấn 'c' để trở lại     ||  Nhấn 'e' để thoát chương trình\n");
-//            System.out.printf(" ➨ \t");
-//            String choice = scanner.nextLine();
-//            try {
-//                switch (choice) {
-//                    case "c":
-//                        Menu.mainMenu();
-//                        break;
-//                    case "e":
-//                        System.exit(0);
-//                        break;
-//                    default:
-//                        System.out.println("Vui lòng nhập lại!");
-//
-//                }
-//            } catch (Exception e) {
-//                System.out.println("Chưa hợp lệ! Xin vui lòng nhập lại!");
-//            }
-//        } while (true);
-//    }
-
     public static void inputTen(int id) {
         Student student = studentService.getStudentByID(id);
         System.out.printf("Cập nhật tên sinh viên: \n➨ \t");
-        String ten = scanner.nextLine().trim();
-        student.setName(ten);
+        String name = scanner.nextLine().trim();
+        student.setName(name);
         studentService.update(student);
         show(studentService.getItem());
         System.out.println("Cập nhật thành công!");
@@ -244,8 +219,8 @@ public class StudentView {
     public static void inputTuoi(int id) {
         Student student = studentService.getStudentByID(id);
         System.out.printf("Cập nhật tuổi sinh viên: \n➨ \t");
-        int tuoi = Integer.parseInt(scanner.nextLine().trim());
-        student.setAge(tuoi);
+        int age = Integer.parseInt(scanner.nextLine().trim());
+        student.setAge(age);
         studentService.update(student);
         show(studentService.getItem());
         System.out.println("Cập nhật thành công!");
@@ -254,8 +229,8 @@ public class StudentView {
     public static void inputGioiTinh(int id) {
         Student student = studentService.getStudentByID(id);
         System.out.printf("Cập nhật giới tính sinh viên: \n➨ \t");
-        String gioiTinh = scanner.nextLine();
-        student.setGender(gioiTinh);
+        String gender = scanner.nextLine();
+        student.setGender(gender);
         studentService.update(student);
         show(studentService.getItem());
         System.out.println("Cập nhật thành công!");
@@ -264,8 +239,8 @@ public class StudentView {
     public static void inputDiachi(int id) {
         Student student = studentService.getStudentByID(id);
         System.out.printf("Cập nhật địa chỉ của sinh viên: \n➨ \t");
-        String diaChi = scanner.nextLine();
-        student.setAddress(diaChi);
+        String address = scanner.nextLine();
+        student.setAddress(address);
         studentService.update(student);
         show(studentService.getItem());
         System.out.println("Cập nhật thành công!");
@@ -274,8 +249,8 @@ public class StudentView {
     public static void inputDiemTrungBinh(int id) {
         Student student = studentService.getStudentByID(id);
         System.out.printf("Cập nhật điểm trung bình của sinh viên: \n➨ \t");
-        double diemTrungBinh = Double.parseDouble(scanner.nextLine().trim());
-        student.setPointAverage(diemTrungBinh);
+        double pointAverage = Double.parseDouble(scanner.nextLine().trim());
+        student.setPointAverage(pointAverage);
         studentService.update(student);
         show(studentService.getItem());
         System.out.println("Cập nhật thành công!");
@@ -309,7 +284,6 @@ public class StudentView {
                                     break;
                                 default:
                                     System.out.println("Nhập lại!");
-
                             }
                         } while (true);
                     case "c":

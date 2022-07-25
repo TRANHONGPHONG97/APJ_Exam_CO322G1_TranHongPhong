@@ -2,8 +2,8 @@ package view;
 
 import model.Student;
 import service.StudentService;
-import sort.SortByDiemACE;
-import sort.SortByDiemDEC;
+import sort.SortByPointACE;
+import sort.SortByPointDEC;
 
 import java.util.List;
 import java.util.Scanner;
@@ -19,8 +19,8 @@ public class MenuSort {
     }
     public static void sortMenu() {
         System.out.println("-------------SẮP XẾP SINH VIÊN THEO ĐIỂM TRUNG BÌNH --------------");
-        System.out.println("-            1. Hiển thị sắp xếp điểm trung bình             ");
-        System.out.println("-            0. Quay lại                                     ");
+        System.out.println("-            1. Hiển thị sắp xếp điểm trung bình                 -");
+        System.out.println("-            0. Quay lại                                         -");
         System.out.println("------------------------------------------------------------------");
         System.out.print("➨ \t");
     }
@@ -62,7 +62,7 @@ public class MenuSort {
                     case 1:
                         List<Student> studentList = studentService.getItem();
                         System.out.println("Sắp xếp điểm trung bình tăng dần");
-                        SortByDiemACE sortByDiemTrungBinhASC = new SortByDiemACE();
+                        SortByPointACE sortByDiemTrungBinhASC = new SortByPointACE();
                         studentList.sort(sortByDiemTrungBinhASC);
                         studentView.show(studentList);
                         option();
@@ -70,8 +70,8 @@ public class MenuSort {
                     case 2:
                         List<Student> studentsList = studentService.getItem();
                         System.out.println("Sắp xếp điểm trung bình giảm dần");
-                        SortByDiemDEC sortByDiemDEC = new SortByDiemDEC();
-                        studentsList.sort(sortByDiemDEC);
+                        SortByPointDEC sortByPointDEC = new SortByPointDEC();
+                        studentsList.sort(sortByPointDEC);
                         studentView.show(studentsList);
                         option();
                         break;
